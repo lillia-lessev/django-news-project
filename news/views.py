@@ -16,7 +16,13 @@ from .forms import *
 
 
 def home(request):
-    """Homepage for root url"""
+    """Renders the homepage for the news application.
+
+    :param request: The incoming HTTP request
+    :type request: HttpRequest
+    :return: Rendered homepage template
+    :rtype: HttpResponse
+    """
     return render(request, 'news/home.html')
 
 
