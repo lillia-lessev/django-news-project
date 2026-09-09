@@ -254,5 +254,9 @@ class Newsletter(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        """Returns newsletter title"""
+        """Returns newsletter title
+
+        :returns: The newsletter title
+        :rtype: str
+        """
         return self.title
