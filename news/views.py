@@ -27,7 +27,13 @@ def home(request):
 
 
 def article_list(request):
-    """Shows list of articles"""
+    """Displays a list of approved articles, with the newest ones first
+
+    :param request: The incoming HTTP request
+    :type request: HttpRequest
+    :return: Rendered template with list of approved articles
+    :rtype: HttpResponse
+    """
     articles = Article.objects.filter(approved=True).order_by('-created_at')
     return render(request, 'news/article_list.html', {'articles': articles})
 
