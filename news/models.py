@@ -89,8 +89,17 @@ class CustomUser(AbstractUser):
 
 
 class Publisher(models.Model):
-    """
-    Represents a publisher which can have multiple editors & journalists.
+    """Represents a news publisher / publishing house.
+    
+    A publisher can have multiple editors & journalists affiliated with it.
+    Readers can subscribe to a publisher to receive newsletters.
+    
+    :param name: The name of the publisher
+    :type name: str
+    :param description: Description of the publisher
+    :type description: str
+    :param owner: the user who owns the publishing house / account
+    :type owner: CustomUser
     """
 
     name = models.CharField(max_length=200)
@@ -120,7 +129,11 @@ class Publisher(models.Model):
     )
 
     def __str__(self):
-        """Return publisher name"""
+        """Returns the name of the publisher
+        
+        :return: Publisher name
+        :rtype: str
+        """
         return self.name
 
 
@@ -143,11 +156,22 @@ def assign_user_to_group(sender, instance, created, **kwargs):
 
 
 class Article(models.Model):
-    """
-    Represents a news article written by a specific journalist.
+    """Represents a news article written by a specific journalist.
 
     An article is associated with a journalist (for independent articles)
       and also optionally a publisher (for publisher content).
+    Articles must be approved by an editor before becoming public.
+    
+    :param title: The article title
+    :type title: str
+    :param content: The full body of the article
+    :type content: str
+    :param author: The journalist who wrote the article
+    :type author: CustomUser
+    :param :
+    :type :
+    :param :
+    :type :
     """
 
     title = models.CharField(max_length=255)
