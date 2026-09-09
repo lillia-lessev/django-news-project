@@ -168,10 +168,10 @@ class Article(models.Model):
     :type content: str
     :param author: The journalist who wrote the article
     :type author: CustomUser
-    :param :
-    :type :
-    :param :
-    :type :
+    :param publisher: Optional publisher associated with article
+    :type publisher: Publisher or None
+    :param approved: Whether or not the article's been approved by an editor
+    :type approved: bool
     """
 
     title = models.CharField(max_length=255)
@@ -208,7 +208,11 @@ class Article(models.Model):
     )
 
     def __str__(self):
-        """Returns the article title"""
+        """Returns the article title
+        
+        :return: Article title
+        :rtype: str 
+        """
         return self.title
 
     class Meta:
