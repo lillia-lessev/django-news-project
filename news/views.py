@@ -75,7 +75,16 @@ def newsletter_detail(request, pk):
 
 @login_required
 def article_create(request):
-    """Create article"""
+    """Page where journalists can create articles
+
+    Only users with the role 'journalist' can access this view.
+    Newly created articles are saved as unapproved.
+
+    :param request: The incoming HTTP request
+    :type request: HttpRequest
+    :return: Rendered form or redirect after successful creation
+    :rtype: HttpResponse
+    """
     if request.user.role != 'journalist':
         messages.error(request,
                        'Only logged-in journalists can write articles.')
