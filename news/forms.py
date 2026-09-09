@@ -13,7 +13,11 @@ from .models import Article, Newsletter
 
 
 class ArticleForm(forms.ModelForm):
-    """Article Form"""
+    """Form used to create and update articles.
+
+    This form is based on the Article model.
+    The fields are the title, content, and optional publisher.
+    """
     class Meta:
         """Meta"""
         model = Article
