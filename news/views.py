@@ -107,7 +107,17 @@ def article_create(request):
 
 @login_required
 def article_edit(request, pk):
-    """Edit article"""
+    """Page where journalists or editors can edit an existing article.
+
+    Journalists may only edit their own article while editors can edit any.
+
+    :param request: The incoming HTTP request
+    :type request: HttpRequest
+    :param pk: Primary key of the article to edit
+    :type pk: int
+    :return: Rendered form or redirect after successful update
+    :rtype: HttpResponse
+    """
     article = get_object_or_404(Article, pk=pk)
     is_journalist = request.user.groups.filter(name='Journalist').exists()
     is_editor = request.user.groups.filter(name='Editor').exists()
