@@ -39,7 +39,15 @@ def article_list(request):
 
 
 def article_detail(request, pk):
-    """Shows article"""
+    """Displays a full single article
+
+    :param request: The incoming HTTP request
+    :type request: HttpRequest
+    :param pk: Primary key of the aricle to display
+    :type pk: int
+    :return: Rendered article detail page
+    :rtype: HttpResponse
+    """
     article = get_object_or_404(Article, pk=pk)
 
     if not article.approved:
