@@ -15,6 +15,7 @@ A Django News application allowing users to browse articles and subscribe to new
 - [Features](#features)
 -[Tech Stack](#tech-stack)
 - [Usage](#usage)
+-[Running with Docker](#running-with-docker)
 
 
 ## Features
@@ -34,7 +35,8 @@ A Django News application allowing users to browse articles and subscribe to new
 - **Python**
 - **Django**
 - **`python-dotenv`**
-- **`Pillow` **
+- **`Pillow`**
+- **Docker**
 
 ## Usage
 
@@ -276,7 +278,38 @@ To access the admin panel, use the following link:
     http://127.0.0.1:8000/admin
 
 
+## Running with Docker
 
+You can also run the application using Docker without setting up a local virtual environment or database.
+
+### Prerequisites
+- Docker Desktop installed and running
+
+### Steps
+
+#### 1. Make sure you are in the project root folder
+
+    cd django-news-project
+
+#### Remember to make sure your *.env* file is present.
+
+#### 2. Build and start the containers:
+
+    ```bash
+    docker-compose up --build
+    
+    ```
+
+#### 3. Open your browser and go to:
+
+    http://localhost:8000
+
+#### 4. To stop the application:
+
+    ```bash
+    docker-compose down
+    
+    ```
 
 ---
 
