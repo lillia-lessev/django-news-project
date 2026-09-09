@@ -25,7 +25,11 @@ class ArticleForm(forms.ModelForm):
 
 
 class NewsletterForm(forms.ModelForm):
-    """Newsletter Form"""
+    """Form used to create and update Newsletters.
+
+    Journalists can set a title, description and select one or more articles
+        to be part of the newsletter.
+    """
     class Meta:
         """Meta"""
         model = Newsletter
@@ -35,6 +39,7 @@ class NewsletterForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        """Initialise the form and add helpful help text to the fields"""
         super().__init__(*args, **kwargs)
         self.fields['title'].help_text = 'Give your newsletter a title.'
         self.fields['description'].help_text = ('Give your newsletter a '
