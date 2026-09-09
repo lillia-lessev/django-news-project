@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
 
     Users can have one of the following roles: reader, editor, journalist, or publisher.
     Each role has different permissions and relationships.
-    
+
     :parma email: Unique email address for / of user.
     :type email: str
     :param role: the role rof the user in the system
@@ -63,7 +63,7 @@ class CustomUser(AbstractUser):
 
     def get_publisher(self):
         """Returns publisher associated with user if user belongs to one
-        
+
         :return: The associated publisher or None
         :rtype: Publisher or None
         """
@@ -76,7 +76,7 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         """Returns a human-readable string representation of the user.
-        
+
         :return: Username and role
         :rtype: str
         """
@@ -90,10 +90,10 @@ class CustomUser(AbstractUser):
 
 class Publisher(models.Model):
     """Represents a news publisher / publishing house.
-    
+
     A publisher can have multiple editors & journalists affiliated with it.
     Readers can subscribe to a publisher to receive newsletters.
-    
+
     :param name: The name of the publisher
     :type name: str
     :param description: Description of the publisher
@@ -130,7 +130,7 @@ class Publisher(models.Model):
 
     def __str__(self):
         """Returns the name of the publisher
-        
+
         :return: Publisher name
         :rtype: str
         """
@@ -161,7 +161,7 @@ class Article(models.Model):
     An article is associated with a journalist (for independent articles)
       and also optionally a publisher (for publisher content).
     Articles must be approved by an editor before becoming public.
-    
+
     :param title: The article title
     :type title: str
     :param content: The full body of the article
@@ -209,9 +209,9 @@ class Article(models.Model):
 
     def __str__(self):
         """Returns the article title
-        
+
         :return: Article title
-        :rtype: str 
+        :rtype: str
         """
         return self.title
 
@@ -221,8 +221,17 @@ class Article(models.Model):
 
 
 class Newsletter(models.Model):
-    """
-    Curated collection of articles created by journalists
+    """A Curated collection of articles created by journalists.
+
+    Journalists can group multiple articles together to create a newsletter
+        for subscribed readers.
+
+    :param title: the Newsletter title
+    :type title: str
+    :param description: Short description about the Newsletter
+    :type description: str
+    :param author: the journalist who created the newsletter
+    :type author: CustomUser
     """
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
