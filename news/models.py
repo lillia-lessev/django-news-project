@@ -12,14 +12,15 @@ from django.dispatch import receiver
 
 
 class CustomUser(AbstractUser):
-    """
-    Represents custom user model that extends AbstractUser
+    """CustomUser model that extends Django's AbstractUser.
 
-    Users' roles can be: reader, editor, journalist.
-
-    Reader - Can only view articles and newsletters.
-    Editor - Can view, update, and delete articles and newsletters.
-    Journalist - Can create, view, update, and delete articles and newsletters.
+    Users can have one of the following roles: reader, editor, journalist, or publisher.
+    Each role has different permissions and relationships.
+    
+    :parma email: Unique email address for / of user.
+    :type email: str
+    :param role: the role rof the user in the system
+    :type role: str
     """
 
     email = models.EmailField(
@@ -61,7 +62,11 @@ class CustomUser(AbstractUser):
         )
 
     def get_publisher(self):
-        """Get publisher if user belongs to one"""
+        """Returns publisher associated with user if user belongs to one
+        
+        :return: The associated publisher or None
+        :rtype: Publisher or None
+        """
         if self.role == 'journalist':
             return self.publisher_journalists.first()
         if self.role == 'editor':
@@ -70,7 +75,11 @@ class CustomUser(AbstractUser):
             return self.publisher_owner.first()
 
     def __str__(self):
-        """Returns string representation of user."""
+        """Returns a human-readable string representation of the user.
+        
+        :return: Username and role
+        :rtype: str
+        """
         return f"{self.username} ({self.role})"
 
     class Meta:
